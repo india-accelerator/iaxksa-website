@@ -85,8 +85,8 @@ export const WorldwideNetworkSection = () => {
                 effect="expandIcon"
                 icon={ChevronRight}
                 iconPlacement="right"
-                className="text-green-500 hover:text-green-400 font-semibold text-base sm:text-lg p-0 h-auto w-fit justify-start underline"
-                style={{ fontFamily: 'var(--font-poppins), sans-serif' }}
+                className="text-white hover:text-gray-100 font-semibold text-base sm:text-lg p-0 h-auto w-fit justify-start underline [&_svg]:text-[#DC0000] [&_svg]:stroke-[#DC0000]"
+                style={{ fontFamily: 'var(--font-poppins), sans-serif', textDecorationColor: '#DC0000' }}
               >
                 <a href={column.linkHref}>
                   {column.linkText}

@@ -12,13 +12,30 @@ const Tooltip = TooltipPrimitive.Root;
 const TooltipTrigger = TooltipPrimitive.Trigger;
 
 const TooltipContent = React.forwardRef(
-  ({ className, sideOffset = 4, ...props }, ref) => {
+  ({ className, sideOffset = 4, children, ...props }, ref) => {
+    const contentRef = React.useRef(null);
+    const combinedRef = React.useCallback(
+      (node) => {
+        contentRef.current = node;
+        if (typeof ref === 'function') {
+          ref(node);
+        } else if (ref) {
+          ref.current = node;
+        }
+      },
+      [ref]
+    );
+
     return (
       <TooltipPrimitive.Portal>
         <TooltipPrimitive.Content
-          ref={ref}
+          ref={combinedRef}
           sideOffset={sideOffset}
-          asChild
+          className={cn(
+            'z-50 overflow-hidden rounded-md bg-white px-3 py-1.5 text-sm text-black shadow-md',
+            className
+          )}
+          style={{ fontFamily: 'var(--font-poppins), sans-serif' }}
           {...props}
         >
           <motion.div
@@ -30,15 +47,10 @@ const TooltipContent = React.forwardRef(
               stiffness: 300,
               damping: 25
             }}
-            className={cn(
-              'z-50 overflow-hidden rounded-md bg-white px-3 py-1.5 text-sm text-black shadow-md',
-              className
-            )}
-            style={{ fontFamily: 'var(--font-poppins), sans-serif' }}
           >
-            {props.children}
-            <TooltipPrimitive.Arrow className="fill-gray-900" />
+            {children}
           </motion.div>
+          <TooltipPrimitive.Arrow className="fill-gray-900" />
         </TooltipPrimitive.Content>
       </TooltipPrimitive.Portal>
     );
