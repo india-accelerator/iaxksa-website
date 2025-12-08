@@ -290,7 +290,8 @@ export const StartupApplicationFormComponent = () => {
           companyGoal: values.companyGoal || "",
           links: values.website || "",
           email: values.ceoEmail || "",
-          startupIndustryDomain: "", // Not in new form
+          startupIndustryDomain: values.startupSector || "",
+          industry: values.startupSector || "",
           ceoLinkedinUrl: values.ceoLinkedinUrl || "",
           ceoPhone: values.ceoPhone || "",
           productDescription: values.productDescription || "",
@@ -546,6 +547,30 @@ export const StartupApplicationFormComponent = () => {
                   </p>
                 )}
               </div>
+            )}
+          </div>
+        ) : question.question_type === 'dropdown' ? (
+          <div>
+            <select
+              value={value}
+              onChange={(e) => handleInputChange(fieldName, e.target.value)}
+              required={isRequired}
+              className={`w-full px-4 py-3.5 border-2 rounded-xl focus:outline-none focus:border-[#DC0000] transition-all bg-gray-50 focus:bg-white ${
+                errors[fieldName] ? 'border-red-400 bg-red-50' : 'border-gray-200 hover:border-gray-300'
+              }`}
+              style={{ fontFamily: 'var(--font-poppins), sans-serif', fontSize: '15px' }}
+            >
+              <option value="">{question.placeholder || 'Select an option'}</option>
+              {question.options && question.options.map((option, index) => (
+                <option key={index} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            {errors[fieldName] && (
+              <p className="text-red-500 text-sm mt-2 flex items-center gap-1">
+                <span className="text-red-500">⚠</span> {errors[fieldName]}
+              </p>
             )}
           </div>
         ) : question.question_type === 'file' ? (

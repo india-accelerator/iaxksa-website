@@ -58,6 +58,14 @@ export const StartupApplicationForm = {
       validation: "text",
       maxLength: 200
     },
+    {
+      question: "In what sector your startup belongs to?",
+      question_type: "dropdown",
+      placeholder: "Select a sector",
+      field_name: "startupSector",
+      validation: "text",
+      options: ["Artificial Intelligence", "Deep Tech", "EV", "Sustainability", "Space Tech", "Prop Tech"]
+    },
     // 2. Product & Traction
     {
       question: "What problem do you solve, and why does it matter in Kingdom of Saudi Arabia (KSA)?",
