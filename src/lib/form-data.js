@@ -56,15 +56,17 @@ export const StartupApplicationForm = {
       placeholder: "Brief one-line description",
       field_name: "description",
       validation: "text",
-      maxLength: 200
+      maxWords: 200
     },
     {
-      question: "In what sector your startup belongs to?",
+      question: "Which sector does your startup belong to?",
       question_type: "dropdown",
       placeholder: "Select a sector",
       field_name: "startupSector",
       validation: "text",
-      options: ["Artificial Intelligence", "Deep Tech", "EV", "Sustainability", "Space Tech", "Prop Tech"]
+      options: ["Artificial Intelligence", "Deep Tech", "EV", "Sustainability", "Space Tech", "Prop Tech", "Other"],
+      followUpQuestion: "Please specify the sector",
+      followUpFieldName: "otherSector"
     },
     // 2. Product & Traction
     {

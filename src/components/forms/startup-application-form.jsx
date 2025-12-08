@@ -23,6 +23,12 @@ const formatStageForDisplay = (stage) => {
     .replace(/\b\w/g, char => char.toUpperCase());
 };
 
+// Helper function to count words in a string
+const countWords = (text) => {
+  if (!text || typeof text !== 'string') return 0;
+  return text.trim().split(/\s+/).filter(word => word.length > 0).length;
+};
+
 const validateField = (value, validation) => {
   if (!value || (typeof value === 'string' && value.trim() === '')) {
     return 'This field is required';
@@ -159,8 +165,32 @@ export const StartupApplicationFormComponent = () => {
         hasErrors = true;
       }
 
+      // Check maxWords if specified
+      if (question.maxWords) {
+        const wordCount = countWords(value);
+        if (wordCount > question.maxWords) {
+          newErrors[fieldName] = `Maximum ${question.maxWords} words allowed`;
+          if (!hasErrors) {
+            firstErrorField = fieldName;
+          }
+          hasErrors = true;
+        }
+      }
+
       // Validate follow-up question if yes/no is "Yes"
       if (question.question_type === 'yesno' && question.followUpQuestion && value === 'Yes') {
+        const followUpValue = formData[question.followUpFieldName] || '';
+        if (!followUpValue || followUpValue.trim() === '') {
+          newErrors[question.followUpFieldName] = 'This field is required';
+          if (!hasErrors) {
+            firstErrorField = question.followUpFieldName;
+          }
+          hasErrors = true;
+        }
+      }
+
+      // Validate follow-up question if dropdown is "Other"
+      if (question.question_type === 'dropdown' && question.followUpQuestion && value === 'Other') {
         const followUpValue = formData[question.followUpFieldName] || '';
         if (!followUpValue || followUpValue.trim() === '') {
           newErrors[question.followUpFieldName] = 'This field is required';
@@ -210,8 +240,32 @@ export const StartupApplicationFormComponent = () => {
         hasErrors = true;
       }
 
+      // Check maxWords if specified
+      if (question.maxWords) {
+        const wordCount = countWords(value);
+        if (wordCount > question.maxWords) {
+          newErrors[fieldName] = `Maximum ${question.maxWords} words allowed`;
+          if (!hasErrors) {
+            firstErrorField = fieldName;
+          }
+          hasErrors = true;
+        }
+      }
+
       // Validate follow-up question if yes/no is "Yes"
       if (question.question_type === 'yesno' && question.followUpQuestion && value === 'Yes') {
+        const followUpValue = formData[question.followUpFieldName] || '';
+        if (!followUpValue || followUpValue.trim() === '') {
+          newErrors[question.followUpFieldName] = 'This field is required';
+          if (!hasErrors) {
+            firstErrorField = question.followUpFieldName;
+          }
+          hasErrors = true;
+        }
+      }
+
+      // Validate follow-up question if dropdown is "Other"
+      if (question.question_type === 'dropdown' && question.followUpQuestion && value === 'Other') {
         const followUpValue = formData[question.followUpFieldName] || '';
         if (!followUpValue || followUpValue.trim() === '') {
           newErrors[question.followUpFieldName] = 'This field is required';
@@ -278,6 +332,17 @@ export const StartupApplicationFormComponent = () => {
     try {
       // Map form data to webhook structure
       const values = formData;
+      
+      // Determine sector value: if "Other" is selected, use otherSector, otherwise use startupSector
+      const sectorValue = values.startupSector === 'Other' 
+        ? (values.otherSector || 'Other') 
+        : (values.startupSector || '');
+      
+      // Determine thesis value: if "Other" is selected, use "Other", otherwise use the selected sector
+      const thesisValue = values.startupSector === 'Other' 
+        ? 'Other' 
+        : (values.startupSector || '');
+      
       const webhookData = {
         startup: {
           name: values.name || "",
@@ -290,8 +355,9 @@ export const StartupApplicationFormComponent = () => {
           companyGoal: values.companyGoal || "",
           links: values.website || "",
           email: values.ceoEmail || "",
-          startupIndustryDomain: values.startupSector || "",
-          industry: values.startupSector || "",
+          startupIndustryDomain: sectorValue,
+          industry: sectorValue,
+          thesis: thesisValue,
           ceoLinkedinUrl: values.ceoLinkedinUrl || "",
           ceoPhone: values.ceoPhone || "",
           productDescription: values.productDescription || "",
@@ -409,15 +475,30 @@ export const StartupApplicationFormComponent = () => {
               ({value.length}/{question.maxLength} characters)
             </span>
           )}
+          {question.maxWords && (
+            <span className="text-sm text-gray-500 font-normal ml-2">
+              ({countWords(value)}/{question.maxWords} words)
+            </span>
+          )}
         </label>
 
         {/* Input Field */}
         {question.question_type === 'text' ? (
           <div>
-            {question.maxLength || question.isTextarea ? (
+            {question.maxLength || question.isTextarea || question.maxWords ? (
               <textarea
                 value={value}
-                onChange={(e) => handleInputChange(fieldName, e.target.value)}
+                onChange={(e) => {
+                  let newValue = e.target.value;
+                  // Prevent exceeding maxWords if specified
+                  if (question.maxWords) {
+                    const words = newValue.trim().split(/\s+/).filter(word => word.length > 0);
+                    if (words.length > question.maxWords) {
+                      newValue = words.slice(0, question.maxWords).join(' ');
+                    }
+                  }
+                  handleInputChange(fieldName, newValue);
+                }}
                 placeholder={question.placeholder}
                 rows={question.isTextarea ? 4 : 5}
                 required={isRequired}
@@ -571,6 +652,31 @@ export const StartupApplicationFormComponent = () => {
               <p className="text-red-500 text-sm mt-2 flex items-center gap-1">
                 <span className="text-red-500">⚠</span> {errors[fieldName]}
               </p>
+            )}
+            {/* Show follow-up question if "Other" is selected */}
+            {question.followUpQuestion && value === 'Other' && (
+              <div className="mt-5 p-5 bg-blue-50 border-2 border-blue-100 rounded-xl">
+                <label className="block text-base font-semibold text-gray-800 mb-2" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
+                  {question.followUpQuestion}
+                  <span className="text-[#DC0000] ml-1">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={formData[question.followUpFieldName] || ''}
+                  onChange={(e) => handleInputChange(question.followUpFieldName, e.target.value)}
+                  placeholder="Please specify the sector"
+                  required
+                  className={`w-full px-4 py-3.5 border-2 rounded-xl focus:outline-none focus:border-[#DC0000] transition-all bg-white ${
+                    errors[question.followUpFieldName] ? 'border-red-400' : 'border-blue-200 hover:border-blue-300'
+                  }`}
+                  style={{ fontFamily: 'var(--font-poppins), sans-serif', fontSize: '15px' }}
+                />
+                {errors[question.followUpFieldName] && (
+                  <p className="text-red-500 text-sm mt-2 flex items-center gap-1">
+                    <span className="text-red-500">⚠</span> {errors[question.followUpFieldName]}
+                  </p>
+                )}
+              </div>
             )}
           </div>
         ) : question.question_type === 'file' ? (
