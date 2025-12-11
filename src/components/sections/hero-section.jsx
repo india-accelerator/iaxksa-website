@@ -6,7 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export const HeroSection = () => {
-  const [scrollY, setScrollY] = React.useState(0);
   const backgroundRef = React.useRef(null);
   const rafId = React.useRef(null);
 
@@ -19,11 +18,10 @@ export const HeroSection = () => {
 
       // Use requestAnimationFrame for smooth updates
       rafId.current = requestAnimationFrame(() => {
-        const currentScrollY = window.scrollY;
-        setScrollY(currentScrollY);
-        
         // Direct DOM manipulation for smoother performance
+        // Parallax effect: background moves slower than scroll (0.5x speed)
         if (backgroundRef.current) {
+          const currentScrollY = window.scrollY;
           const parallaxOffset = currentScrollY * 0.5;
           backgroundRef.current.style.transform = `translate3d(0, ${parallaxOffset}px, 0)`;
         }
@@ -39,9 +37,6 @@ export const HeroSection = () => {
     };
   }, []);
 
-  // Parallax effect: background moves slower than scroll
-  const parallaxOffset = scrollY * 0.5;
-
   return (
     <div className="relative w-full min-h-[60vh] sm:min-h-[90vh] md:min-h-screen overflow-hidden">
       {/* Background Image with Parallax */}
@@ -49,7 +44,6 @@ export const HeroSection = () => {
         ref={backgroundRef}
         className="absolute inset-0 z-0"
         style={{
-          transform: `translate3d(0, ${parallaxOffset}px, 0)`,
           willChange: 'transform',
           backfaceVisibility: 'hidden',
           perspective: 1000,
