@@ -9,6 +9,26 @@ export const GoodCompanySection = () => {
   const imageCount = 8;
   const images = Array.from({ length: imageCount }, (_, i) => i);
 
+  /**
+   * Function responsible for infinite right-to-left motion
+   * When the last blog ends, it seamlessly shows the first blog again
+   * @param {number} duration - Animation duration in seconds (default: 15)
+   * @returns {object} Animation configuration for Framer Motion
+   */
+  const getInfiniteScrollMotion = (duration = 15) => {
+    return {
+      animate: { 
+        x: ['0%', '-50%'] // Move from 0% to -50% (halfway, since we duplicate the set)
+      },
+      transition: {
+        repeat: Infinity,
+        repeatType: 'loop',
+        duration: duration,
+        ease: 'linear', // Linear ease for constant speed without reversing
+      }
+    };
+  };
+
   return (
     <section className="w-full bg-white py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 max-w-7xl">
@@ -26,17 +46,7 @@ export const GoodCompanySection = () => {
         <div className="relative w-full overflow-hidden">
           <motion.div
             className="flex"
-            animate={{
-              x: ['0%', '-50%'],
-            }}
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: 'loop',
-                duration: 30,
-                ease: 'linear',
-              },
-            }}
+            {...getInfiniteScrollMotion(15)}
           >
             {/* First set of images */}
             {images.map((index) => (

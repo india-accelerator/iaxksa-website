@@ -21,12 +21,12 @@ export const AboutStudioSection = () => {
           {/* Left Column - About Studio */}
           <div className="flex flex-col justify-center">
             <h2 
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase mb-6 sm:mb-8"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase mb-6 sm:mb-8 pl-4 lg:pl-0"
               style={{ fontFamily: 'var(--font-oswald), sans-serif' }}
             >
               ABOUT STUDIO
             </h2>
-            <div className='pl-10'>
+            <div className='pl-4 lg:pl-10'>
 
             <p 
               className="text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed mb-6 sm:mb-8"

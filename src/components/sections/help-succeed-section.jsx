@@ -41,30 +41,32 @@ export const HelpSucceedSection = () => {
   };
 
   return (
-    <section className="w-full bg-white py-12 sm:py-16 md:py-20 lg:py-24">
+    <section className="w-full bg-white py-10 sm:py-14 md:py-20 lg:py-24">
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 max-w-7xl">
         {/* Header Section */}
-        <div className="text-center mb-12 sm:mb-16 md:mb-20">
+        <div className="text-center mb-10 sm:mb-12 md:mb-16 lg:mb-20">
           <h2 
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black mb-6 sm:mb-8"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-black mb-4 sm:mb-5 md:mb-6 lg:mb-8 leading-tight"
             style={{ fontFamily: 'var(--font-oswald), sans-serif' }}
           >
             We Help You Succeed
           </h2>
           <p 
-            className="text-gray-600 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto"
+            className="text-gray-600 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-3xl mx-auto px-2 sm:px-0"
             style={{ fontFamily: 'var(--font-poppins), sans-serif', fontWeight: 400 }}
           >
             Techstars provides founders with a 3-month, mentorship-driven accelerator program, a capital investment, and access to the Techstars network.
           </p>
         </div>
 
-        {/* Three Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+        {/* Row on mobile, Grid on desktop */}
+        <div 
+          className="flex flex-row overflow-x-auto md:grid md:grid-cols-2 lg:grid-cols-3 gap-0 sm:gap-0 md:gap-8 lg:gap-10 xl:gap-12 md:overflow-x-visible snap-x snap-mandatory md:snap-none [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] -mx-4 sm:-mx-6 md:mx-0"
+        >
           {columns.map((column, index) => (
-            <div key={index} className="flex flex-col">
+            <div key={index} className="flex flex-col w-screen min-w-screen sm:w-screen sm:min-w-screen md:w-auto md:min-w-0 snap-center md:snap-none shrink-0 px-4 sm:px-6 md:px-0">
               {/* Image Container */}
-              <div className="relative w-full h-[200px] sm:h-[220px] md:h-[240px] lg:h-[250px] overflow-hidden rounded-lg mb-6 sm:mb-8">
+              <div className="relative w-full h-[180px] sm:h-[200px] md:h-[220px] lg:h-[240px] xl:h-[250px] overflow-hidden rounded-lg mb-4 sm:mb-5 md:mb-6 lg:mb-8">
                 <Image
                   src="/section4.jpg"
                   alt={column.heading}
@@ -77,22 +79,22 @@ export const HelpSucceedSection = () => {
 
               {/* Column Heading */}
               <h3 
-                className="text-xl sm:text-2xl font-bold text-black mb-4 sm:mb-6"
+                className="text-lg sm:text-xl md:text-2xl lg:text-2xl font-bold text-black mb-3 sm:mb-4 md:mb-5 lg:mb-6 leading-tight"
                 style={{ fontFamily: 'var(--font-oswald), sans-serif' }}
               >
                 {column.heading}
               </h3>
 
               {/* Bullet Points */}
-              <ul className="space-y-3 sm:space-y-4">
+              <ul className="space-y-2.5 sm:space-y-3 md:space-y-3.5 lg:space-y-4">
                 {column.bullets.map((bullet, bulletIndex) => (
                   <li 
                     key={bulletIndex}
-                    className="flex items-start gap-3"
+                    className="flex items-start gap-2.5 sm:gap-3"
                     style={{ fontFamily: 'var(--font-poppins), sans-serif' }}
                   >
-                    <span className="shrink-0 w-2 h-2 bg-black mt-2 rounded-sm" />
-                    <span className="text-black text-sm sm:text-base leading-relaxed">
+                    <span className="shrink-0 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-black mt-1.5 sm:mt-2 rounded-sm" />
+                    <span className="text-black text-xs sm:text-sm md:text-base leading-relaxed flex-1">
                       {renderText(bullet)}
                     </span>
                   </li>
