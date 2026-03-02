@@ -30,7 +30,7 @@ export const GoodCompanySection = () => {
   };
 
   return (
-    <section className="w-full bg-white py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
+    <section id="good-company" className="w-full bg-white py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 max-w-7xl">
         {/* Header Section */}
         <div className="text-center mb-12 sm:mb-16 md:mb-20">

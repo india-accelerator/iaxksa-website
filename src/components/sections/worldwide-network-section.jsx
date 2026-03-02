@@ -2,33 +2,25 @@
 
 import * as React from 'react';
 import Image from 'next/image';
-import { ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 export const WorldwideNetworkSection = () => {
   const columns = [
     {
       heading: 'Mentors',
-      description: 'Mentors are essential. They share wisdom, create relationships, and help you succeed. Techstars mentors come from top companies like Google, Nike, Amazon, Aetna, ESPN, and Coca-Cola.',
-      linkText: 'Meet our mentors',
-      linkHref: '#',
-    },
-    {
-      heading: 'Partners',
-      description: 'Techstars offers ways to engage with our network, whether you want to build a local startup community, interact with top startups, or invest.',
-      linkText: 'Partner with us',
-      linkHref: '#',
+      description: "Get access to India Accelerator's network, built by experienced industry veterans and mentors. Get hands-on experience on your startup idea with experts who don't just advise, but actively shape your growth roadmap.",
     },
     {
       heading: 'Investors',
-      description: 'Techstars is a leading pre-seed venture capital firm, investing globally in entrepreneurs. We have been supporting founders since 2007 and delivering strong returns.',
-      linkText: 'Invest in the future',
-      linkHref: '#',
+      description: 'IA has a diverse growth ecosystem that includes its own angel network, Finvolve (multi-stage VC fund), its three AIFs and a GIFT City fund.',
+    },
+    {
+      heading: 'Founders',
+      description: "Become part of IA's expanding community that has built successful businesses through the accelerator's support. From AI to DeepTech, the founders are known for their resilience and collaboration.",
     },
   ];
 
   return (
-    <section className="w-full bg-black py-12 sm:py-16 md:py-20 lg:py-24">
+    <section id="network" className="w-full bg-black py-12 sm:py-16 md:py-20 lg:py-24">
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 max-w-7xl">
         {/* Header Section */}
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
@@ -72,26 +64,11 @@ export const WorldwideNetworkSection = () => {
 
               {/* Description */}
               <p 
-                className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 grow"
+                className="text-gray-300 text-sm sm:text-base leading-relaxed grow"
                 style={{ fontFamily: 'var(--font-poppins), sans-serif', fontWeight: 400 }}
               >
                 {column.description}
               </p>
-
-              {/* Link */}
-              <Button
-                asChild
-                variant="link"
-                effect="expandIcon"
-                icon={ChevronRight}
-                iconPlacement="right"
-                className="text-white hover:text-gray-100 font-semibold text-base sm:text-lg p-0 h-auto w-fit justify-start underline [&_svg]:text-[#DC0000] [&_svg]:stroke-[#DC0000]"
-                style={{ fontFamily: 'var(--font-poppins), sans-serif', textDecorationColor: '#DC0000' }}
-              >
-                <a href={column.linkHref}>
-                  {column.linkText}
-                </a>
-              </Button>
             </div>
           ))}
         </div>

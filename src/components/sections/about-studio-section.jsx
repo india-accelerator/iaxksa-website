@@ -7,15 +7,26 @@ import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
 export const AboutStudioSection = () => {
+  const [applyUrl, setApplyUrl] = React.useState('/apply');
+
+  // Preserve URL parameters when navigating to apply page (client-side only)
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const queryString = params.toString();
+      setApplyUrl(queryString ? `/apply?${queryString}` : '/apply');
+    }
+  }, []);
+
   const stats = [
-    { value: 1300, prefix: '', suffix: '+', headline: 'Mentors' },
-    { value: 127.7, prefix: '$', suffix: 'B', decimals: 1, headline: 'Portfolio Market Cap' },
-    { value: 22, prefix: '', suffix: '', headline: '$1B+ Companies' },
-    { value: 100, prefix: '', suffix: '+', headline: 'SAMPLE HEADLINE' },
+    { value: 150, prefix: '', suffix: '+', headline: 'Global Mentors' },
+    { value: 250, prefix: '', suffix: '', headline: 'Portfolio Startups' },
+    { value: 5, prefix: '', suffix: '', headline: 'Global Programs' },
+    { value: 4, prefix: '', suffix: '+', headline: 'Active Funds' },
   ];
 
   return (
-    <section className="w-full bg-black py-12 sm:py-16 md:py-20 lg:py-24">
+    <section id="about" className="w-full bg-black py-12 sm:py-16 md:py-20 lg:py-24">
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Left Column - About Studio */}
@@ -24,7 +35,7 @@ export const AboutStudioSection = () => {
               className="text-3xl sm:text-4xl md:text-5xl font-bold text-white uppercase mb-6 sm:mb-8 pl-4 lg:pl-0"
               style={{ fontFamily: 'var(--font-oswald), sans-serif' }}
             >
-              ABOUT STUDIO
+              About the Initiative
             </h2>
             <div className='pl-4 lg:pl-10'>
 
@@ -32,7 +43,7 @@ export const AboutStudioSection = () => {
               className="text-gray-300 text-base sm:text-lg md:text-xl leading-relaxed mb-6 sm:mb-8"
               style={{ fontFamily: 'var(--font-poppins), sans-serif' }}
             >
-              Quickly incentivize impactful action items before tactical collaboration and idea-sharing. Monotonically engage market-driven intellectual capital through wireless opportunities. Progressively network performance based services for functionalized testing procedures.
+              Arabian Accelerator, powered by India Accelerator and NTDP, a national program that contributes to developing the technology ecosystem in the Kingdom, empowers Indian startup founders, building in Artificial Intelligence (AI), Sustainability, Electric Mobility (EV), PropTech, and DeepTech sectors with funding, mentorship and market access to scale beyond borders.
             </p>
             <Button
               asChild
@@ -43,8 +54,8 @@ export const AboutStudioSection = () => {
               className="w-fit border-white hover:bg-white hover:text-black transition-colors"
               style={{ fontFamily: 'var(--font-poppins), sans-serif' }}
               >
-              <Link href="#">
-                read more
+              <Link href={applyUrl}>
+                Apply now
               </Link>
             </Button>
               </div>

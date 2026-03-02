@@ -55,8 +55,8 @@ const oswald = localFont({
 });
 
 export const metadata = {
-  title: "IAXKSA",
-  description: "IAXKSA",
+  title: "Arabian Accelerator",
+  description: "India Accelerator launches specialized program expanding in Saudi Arabia",
 };
 
 export default function RootLayout({ children }) {

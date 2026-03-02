@@ -75,8 +75,25 @@ export const StartupApplicationFormComponent = () => {
   const [submitError, setSubmitError] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
+  const [startupSource, setStartupSource] = useState('WEBSITE_INBOUND');
+  const [channel, setChannel] = useState('');
 
   const questions = StartupApplicationForm.question;
+
+  // Get startupSource and channel from URL parameter (client-side only)
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const startupSourceParam = urlParams.get('startupsource');
+      const source = startupSourceParam?.toLowerCase() === 'marketing' ? 'MARKETING' : 'WEBSITE_INBOUND';
+      setStartupSource(source);
+      
+      const channelParam = urlParams.get('channel');
+      if (channelParam) {
+        setChannel(channelParam);
+      }
+    }
+  }, []);
 
   // Group questions by section (stepTitle)
   const groupQuestionsBySection = () => {
@@ -310,7 +327,11 @@ export const StartupApplicationFormComponent = () => {
 
   const handleSubmit = async (e) => {
     e?.preventDefault();
-    
+
+    // Applications are closed — do not submit
+    setSubmitError('The Applications are closed now');
+    return;
+
     // Validate all fields before submitting
     const validationResult = validateAllFields();
     if (!validationResult.isValid) {
@@ -343,6 +364,9 @@ export const StartupApplicationFormComponent = () => {
         ? 'Other' 
         : (values.startupSector || '');
       
+      // Set howDidYouGetToKnow based on channel value, or empty string if channel is empty
+      const howDidYouGetToKnow = channel || "";
+
       const webhookData = {
         startup: {
           name: values.name || "",
@@ -352,6 +376,9 @@ export const StartupApplicationFormComponent = () => {
           geographical_address: "", // Not in new form
           stage: "", // Not in new form
           startup_source: "APPLICATION_FORM",
+          startupSource: startupSource,
+          channel: channel || "",
+          howDidYouGetToKnow: howDidYouGetToKnow,
           companyGoal: values.companyGoal || "",
           links: values.website || "",
           email: values.ceoEmail || "",
@@ -765,6 +792,13 @@ export const StartupApplicationFormComponent = () => {
           </div>
         </div>
 
+        {/* Applications closed notice */}
+        <div className="mb-6 p-4 bg-amber-50 border-2 border-amber-200 rounded-xl text-center">
+          <p className="text-amber-800 font-semibold" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
+            The Applications are closed now
+          </p>
+        </div>
+
         {/* Form Card */}
         <form onSubmit={handleSubmit}>
           <motion.div
@@ -867,3 +901,5 @@ export const StartupApplicationFormComponent = () => {
     </div>
   );
 };
+
+

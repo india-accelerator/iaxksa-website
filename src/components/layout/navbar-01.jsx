@@ -118,10 +118,10 @@ const CloseIcon = ({ className, ...props }) => (
 // Default navigation links
 const defaultNavigationLinks = [
   { href: '#about', label: 'About' },
-  { href: '#what-to-expect', label: 'What To Expect' },
-  { href: '#eligibility-criteria', label: 'Eligibility Criteria' },
-  { href: '#why-bigshift', label: 'Why Us?' },
-  { href: '#timeline', label: 'Queries' },
+  { href: '#what-sets-us-apart', label: 'What Sets Us Apart' },
+  { href: '#benefits', label: 'Benefits' },
+  // { href: '#good-company', label: 'Good Company' },
+  // { href: '#network', label: 'Network' },
 ];
 
 export const Navbar01 = React.forwardRef(({
@@ -326,9 +326,9 @@ export const Navbar01 = React.forwardRef(({
             }}
             className="flex items-center text-black hover:text-black/90 transition-colors cursor-pointer"
           >
-            <div className="relative w-16 h-8 sm:w-20 sm:h-10 md:w-24 md:h-12">
+            <div className="relative w-16 h-8 sm:w-20 sm:h-10 md:w-40 md:h-12">
               <Image 
-                src="/programLogo.png" 
+                src="/India-Accelerator.png" 
                 alt="Next Stop" 
                 fill
                 className="object-contain"
@@ -384,7 +384,11 @@ export const Navbar01 = React.forwardRef(({
               if (onCtaClick) {
                 onCtaClick();
               } else {
-                router.push('/apply');
+                // Preserve URL parameters when navigating to apply page
+                const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : new URLSearchParams();
+                const queryString = params.toString();
+                const applyUrl = queryString ? `/apply?${queryString}` : '/apply';
+                router.push(applyUrl);
               }
             }}
           >
@@ -396,7 +400,7 @@ export const Navbar01 = React.forwardRef(({
     </motion.header>
     
     {/* Sub Navbar */}
-    {isSubNavbarVisible && (
+    {/* {isSubNavbarVisible && (
       <motion.div 
         initial={{ opacity: 0, y: -10 }}
         animate={isMounted && !isSubNavbarClosing ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
@@ -430,7 +434,7 @@ export const Navbar01 = React.forwardRef(({
           </button>
         </div>
       </motion.div>
-    )}
+    )} */}
     </div>
   );
 });
