@@ -4,7 +4,11 @@ import * as React from 'react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { StartupApplicationForm } from '@/lib/form-data';
+import { buildIaxksaNewWebhookPayload } from '@/lib/iaxksa-new-webhook-payload';
 import { motion } from 'framer-motion';
+
+const FORWARD_PRIMARY_API = '/api/forward-iaxksa-primary-webhook';
+const FORWARD_NEW_API = '/api/forward-iaxksa-new-webhook';
 import { Check, Loader2, Building2, TrendingUp, Globe, Users, FileText } from 'lucide-react';
 
 // Map startup stage from form value to webhook format
@@ -328,10 +332,6 @@ export const StartupApplicationFormComponent = () => {
   const handleSubmit = async (e) => {
     e?.preventDefault();
 
-    // Applications are closed — do not submit
-    setSubmitError('The Applications are closed now');
-    return;
-
     // Validate all fields before submitting
     const validationResult = validateAllFields();
     if (!validationResult.isValid) {
@@ -403,25 +403,53 @@ export const StartupApplicationFormComponent = () => {
         }
       };
 
-      const response = await fetch('https://automate.indiaaccelerator.live/webhook/f2337016-2e65-4394-a16f-36b75ba69eb0', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(webhookData),
+      const newPayload = buildIaxksaNewWebhookPayload(values, {
+        startupSource,
+        sectorValue,
+        thesisValue,
+        howDidYouGetToKnow,
+        channel,
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      const jsonPost = (url, bodyObj) =>
+        fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(bodyObj),
+          cache: 'no-store',
+        });
+
+      const primaryResponse = await jsonPost(FORWARD_PRIMARY_API, webhookData);
+
+      if (!primaryResponse.ok) {
+        const errBody = await primaryResponse.json().catch(() => null);
+        const detail =
+          errBody?.error || errBody?.detail || `HTTP ${primaryResponse.status}`;
+        throw new Error(detail);
       }
 
-      const result = await response.json().catch(() => ({})); // Handle case where response might not be JSON
+      try {
+        const secondaryResponse = await jsonPost(FORWARD_NEW_API, newPayload);
+        if (!secondaryResponse.ok) {
+          console.warn(
+            'New webhook may not have received data. Check forward-iaxksa-new-webhook and IAXKSA_WEBHOOK_NEW_URL.'
+          );
+        }
+      } catch (err) {
+        console.error('New webhook request failed:', err);
+      }
+
+      const result = await primaryResponse.json().catch(() => ({}));
       
       setIsSubmitted(true);
       console.log('Form submitted successfully:', result);
     } catch (error) {
       console.error('Error submitting form:', error);
-      setSubmitError('Failed to submit application. Please try again.');
+      setSubmitError(
+        error?.message
+          ? `Failed to submit: ${error.message}`
+          : 'Failed to submit application. Please try again.'
+      );
       setIsSubmitting(false);
     }
   };
@@ -790,13 +818,6 @@ export const StartupApplicationFormComponent = () => {
               className="bg-[#DC0000] h-2 rounded-full"
             />
           </div>
-        </div>
-
-        {/* Applications closed notice */}
-        <div className="mb-6 p-4 bg-amber-50 border-2 border-amber-200 rounded-xl text-center">
-          <p className="text-amber-800 font-semibold" style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
-            The Applications are closed now
-          </p>
         </div>
 
         {/* Form Card */}
