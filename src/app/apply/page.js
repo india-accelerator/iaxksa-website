@@ -1,4 +1,3 @@
-// import { Navbar01 } from '@/components/layout/navbar-01';
 import { StartupApplicationFormComponent } from '@/components/forms/startup-application-form';
 import { Footer } from '@/components/layout/footer';
 
