@@ -1,22 +1,49 @@
-@import "tailwindcss";
+/*
+ * ARABIAN ACCELERATOR — PDF DESIGN INVENTORY
+ * Reference: 1440 × 8244 px (PDF 1080 × 6182.88 pt at 4/3 scale), one desktop artboard.
+ *
+ * COLORS
+ * Page: 180deg #070E1C → #0A1628. Gold: #D4A857; light #E8C785; soft #E8D9B0.
+ * Ivory #F1EEE6; body #B8C4D6; muted #7C8AA3; button ink #1A1305.
+ * Blues: #0D1A32, #142544, #1A2E52, #1E3358, #243B62, #2A4675, #3A5379.
+ * Illustration accents: #B8A47A, #B8936A, #6B4E2A, #4A3020, #2E1E14,
+ * #7A2A2A, #3A1414, #1E5A6B, #0D2E38, #8FD4E0.
+ * Gradients: gold 180deg #E8C785 → #D4A857; journey 90deg #2A4675 → #D4A857
+ * → #2A4675; illustration 135deg #142544 → #070E1C; mark 135deg #D4A857 → #8B6A28.
+ * Contrast: gold/dark 8.76:1, body/dark 10.94:1, muted/dark 5.53:1.
+ *
+ * TYPOGRAPHY
+ * Fraunces variable display (300/400/600 + italic), Inter body/nav (400/500/600),
+ * JetBrains Mono labels (400/500). Geeza Pro occurs only in the extracted MISA artwork.
+ * h1 96/101px + italic 88/96px; h2 60/66px; final CTA 86.4/91px;
+ * card h3 30/34px; feature h3 26/34px; body-large 17/29px; body 15/24px;
+ * small/button 13.5/20px; eyebrow 11/16px with 3.2px tracking; stats 42/48px.
+ *
+ * SPACING / SHAPE
+ * Container 1176px; 132px desktop gutters; 78px header; hero columns 638/64/474px.
+ * Section cadence 250–300px; card padding 40–48px; inner gaps 24–40px.
+ * Major cards 24px radius; small cards 16px; buttons/pills fully rounded; 1px #1E3358 borders.
+ * Gold glow 0 12px 32px rgba(212,168,87,.25); card shadow 0 24px 80px rgba(0,0,0,.22).
+ *
+ * SECTIONS
+ * Header; Hero + Program Summary; How it began; Program Snapshot + Saudi market card;
+ * Program Journey; four founder benefits; Selected cohort; Partners; Final CTA; Footer.
+ *
+ * MOTIFS / ASSETS
+ * Full-page grain/geometric texture; AA monogram; 5 summary icons; 7 snapshot icons;
+ * origin founders; Saudi map; journey rule/dots; 4 founder-benefit illustrations;
+ * 6 cohort marks; 3 partner marks; gold pills/dividers. PDF contains vector paths only.
+ * Custom art/marks are high-resolution PDF crops in PNG/WebP; standard icons use Lucide.
+ *
+ * AMBIGUITIES / RESPONSIVE DECISIONS
+ * No mobile artboard or interaction states. Mobile stacks hero/cards and partner artwork,
+ * converts the journey to vertical steps, and uses an accessible menu. The PDF's Skia
+ * tiling grain is preserved with a source-extracted texture overlay.
+ */
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary: #171717;
-  --primary-foreground: #ffffff;
-  --secondary: #f4f4f5;
-  --secondary-foreground: #171717;
-  --accent: #f4f4f5;
-  --accent-foreground: #171717;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: #e4e4e7;
-  --input: #e4e4e7;
-  --ring: #171717;
-  --popover: #ffffff;
-  --popover-foreground: #171717;
-}
+@import "tailwindcss";
+@import "../styles/tokens.css";
+@import "../styles/landing.css";
 
 @theme inline {
   --color-background: var(--background);
@@ -43,4 +70,15 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

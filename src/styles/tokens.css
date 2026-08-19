@@ -1,0 +1,153 @@
+:root {
+  /* Shared application tokens retained for /apply. */
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #171717;
+  --primary-foreground: #ffffff;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #171717;
+  --accent: #f4f4f5;
+  --accent-foreground: #171717;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #171717;
+  --popover: #ffffff;
+  --popover-foreground: #171717;
+
+  /* Arabian Accelerator palette sampled from the design PDF. */
+  --aa-ink-950: #070e1c;
+  --aa-ink-900: #0a1628;
+  --aa-ink-875: #0d1a32;
+  --aa-ink-850: #0d1a32;
+  --aa-ink-800: #142544;
+  --aa-ink-750: #1a2e52;
+  --aa-blue-700: #1e3358;
+  --aa-blue-650: #243b62;
+  --aa-blue-600: #2a4675;
+  --aa-blue-500: #3a5379;
+  --aa-gold: #d4a857;
+  --aa-gold-light: #e8c785;
+  --aa-gold-soft: #e8d9b0;
+  --aa-ivory: #f1eee6;
+  --aa-body: #b8c4d6;
+  --aa-muted: #7c8aa3;
+  --aa-button-ink: #1a1305;
+  --aa-illustration-tan: #b8a47a;
+  --aa-illustration-copper: #b8936a;
+  --aa-illustration-brown-500: #6b4e2a;
+  --aa-illustration-brown-700: #4a3020;
+  --aa-illustration-brown-900: #2e1e14;
+  --aa-illustration-red-500: #7a2a2a;
+  --aa-illustration-red-900: #3a1414;
+  --aa-illustration-teal-500: #1e5a6b;
+  --aa-illustration-teal-900: #0d2e38;
+  --aa-illustration-cyan: #8fd4e0;
+  --aa-white: #ffffff;
+  --aa-black: #000000;
+
+  /* PDF-measured gradients. */
+  --aa-gradient-page: linear-gradient(180deg, var(--aa-ink-950) 0%, var(--aa-ink-900) 100%);
+  --aa-gradient-gold: linear-gradient(180deg, var(--aa-gold-light) 0%, var(--aa-gold) 100%);
+  --aa-gradient-journey: linear-gradient(90deg, var(--aa-blue-600) 0%, var(--aa-gold) 50%, var(--aa-blue-600) 100%);
+  --aa-gradient-illustration: linear-gradient(135deg, var(--aa-ink-800) 0%, var(--aa-ink-950) 100%);
+  --aa-gradient-panel: linear-gradient(135deg, var(--aa-ink-800) 0%, var(--aa-ink-900) 100%);
+  --aa-gradient-mark: linear-gradient(135deg, var(--aa-gold) 0%, #8b6a28 100%);
+
+  /* Type scale converted from PDF points at 4/3 CSS scale. */
+  --aa-type-hero: 6rem;
+  --aa-type-hero-accent: 5.5rem;
+  --aa-type-display: 3.75rem;
+  --aa-type-cta: 5.4rem;
+  --aa-type-stat: 2.625rem;
+  --aa-type-card-title: 1.875rem;
+  --aa-type-feature-title: 1.625rem;
+  --aa-type-body-large: 1.0625rem;
+  --aa-type-body: 0.9375rem;
+  --aa-type-small: 0.84375rem;
+  --aa-type-eyebrow: 0.6875rem;
+  --aa-type-nav: 0.9375rem;
+
+  --aa-leading-hero: 1.052;
+  --aa-leading-display: 1.1;
+  --aa-leading-card: 1.14;
+  --aa-leading-body-large: 1.706;
+  --aa-leading-body: 1.6;
+  --aa-leading-small: 1.48;
+  --aa-leading-eyebrow: 1.45;
+
+  --aa-tracking-eyebrow: 0.2rem;
+  --aa-tracking-stat: 0.1875rem;
+  --aa-tracking-logo: 0.25rem;
+
+  /* Layout and spacing. */
+  --aa-container: 73.5rem;
+  --aa-gutter: clamp(1.25rem, 5vw, 8.25rem);
+  --aa-header-height: 4.875rem;
+  --aa-section-gap: 17.5rem;
+  --aa-section-gap-mobile: 7.5rem;
+  --aa-space-hero-top: 4rem;
+  --aa-space-hero-bottom: 14.125rem;
+  --aa-space-origin-bottom: 12.9375rem;
+  --aa-space-snapshot-bottom: 15.25rem;
+  --aa-space-journey-bottom: 16.25rem;
+  --aa-space-benefits-bottom: 14.125rem;
+  --aa-space-cohort-bottom: 11.875rem;
+  --aa-space-partners-bottom: 8.875rem;
+  --aa-space-final-top: 0rem;
+  --aa-space-final-bottom: 10.1875rem;
+  --aa-space-card-art: 1.25rem;
+  --aa-space-benefit-card: 1.5rem;
+  --aa-summary-row-height: 6rem;
+  --aa-benefit-height-one: 29.0625rem;
+  --aa-benefit-height-two: 31.5625rem;
+  --aa-benefit-height-three: 29.0625rem;
+  --aa-benefit-height-four: 30.75rem;
+  --aa-card-padding: 3rem;
+  --aa-card-padding-small: 2.5rem;
+  --aa-gap-1: 0.5rem;
+  --aa-gap-2: 0.75rem;
+  --aa-gap-3: 1rem;
+  --aa-gap-4: 1.5rem;
+  --aa-gap-5: 2rem;
+  --aa-gap-6: 2.5rem;
+  --aa-gap-7: 3rem;
+  --aa-gap-8: 4rem;
+  --aa-gap-9: 5.5rem;
+
+  /* Off-screen layout reservations used by content-visibility. */
+  --aa-intrinsic-origin-mobile: 49.9375rem;
+  --aa-intrinsic-snapshot-mobile: 120.625rem;
+  --aa-intrinsic-journey-mobile: 73.5625rem;
+  --aa-intrinsic-benefits-mobile: 160.0625rem;
+  --aa-intrinsic-cohort-mobile: 35.5625rem;
+  --aa-intrinsic-partners-mobile: 48.875rem;
+  --aa-intrinsic-final-mobile: 40.1875rem;
+  --aa-intrinsic-footer-mobile: 15.1875rem;
+  --aa-intrinsic-origin-desktop: 38.8125rem;
+  --aa-intrinsic-snapshot-desktop: 62.4375rem;
+  --aa-intrinsic-journey-desktop: 37.4375rem;
+  --aa-intrinsic-benefits-desktop: 137.375rem;
+  --aa-intrinsic-cohort-desktop: 26.875rem;
+  --aa-intrinsic-partners-desktop: 26.5rem;
+  --aa-intrinsic-final-desktop: 27.125rem;
+  --aa-intrinsic-footer-desktop: 6.5rem;
+
+  /* Shape and elevation. */
+  --aa-radius-pill: 62.4375rem;
+  --aa-radius-card: 1.5rem;
+  --aa-radius-small: 1rem;
+  --aa-radius-control: 0.75rem;
+  --aa-border: 0.0625rem solid var(--aa-blue-700);
+  --aa-shadow-gold: 0 0.75rem 2rem rgb(212 168 87 / 25%);
+  --aa-shadow-card: 0 1.5rem 5rem rgb(0 0 0 / 22%);
+  --aa-focus-ring: 0 0 0 0.1875rem rgb(232 199 133 / 45%);
+  --aa-surface-header: rgb(7 14 28 / 82%);
+  --aa-surface-card: rgb(10 22 40 / 42%);
+  --aa-surface-step: rgb(10 22 40 / 45%);
+  --aa-surface-gold-subtle: rgb(212 168 87 / 8%);
+  --aa-border-gold-42: rgb(212 168 87 / 42%);
+  --aa-border-gold-46: rgb(212 168 87 / 46%);
+  --aa-border-gold-48: rgb(212 168 87 / 48%);
+}
