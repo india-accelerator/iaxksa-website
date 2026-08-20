@@ -87,10 +87,10 @@
   --aa-header-height: 4.875rem;
   --aa-section-gap: 17.5rem;
   --aa-section-gap-mobile: 7.5rem;
-  --aa-space-hero-top: 4rem;
-  --aa-space-hero-bottom: 14.125rem;
+  --aa-space-hero-top: 1.5rem;
+  --aa-space-hero-bottom: 2rem;
   --aa-space-origin-bottom: 12.9375rem;
-  --aa-space-snapshot-bottom: 15.25rem;
+  --aa-space-snapshot-bottom: 4.5rem;
   --aa-space-journey-bottom: 16.25rem;
   --aa-space-benefits-bottom: 14.125rem;
   --aa-space-cohort-bottom: 11.875rem;
@@ -126,7 +126,7 @@
   --aa-intrinsic-final-mobile: 40.1875rem;
   --aa-intrinsic-footer-mobile: 15.1875rem;
   --aa-intrinsic-origin-desktop: 38.8125rem;
-  --aa-intrinsic-snapshot-desktop: 62.4375rem;
+  --aa-intrinsic-snapshot-desktop: 47rem;
   --aa-intrinsic-journey-desktop: 37.4375rem;
   --aa-intrinsic-benefits-desktop: 137.375rem;
   --aa-intrinsic-cohort-desktop: 26.875rem;
@@ -143,7 +143,7 @@
   --aa-shadow-gold: 0 0.75rem 2rem rgb(212 168 87 / 25%);
   --aa-shadow-card: 0 1.5rem 5rem rgb(0 0 0 / 22%);
   --aa-focus-ring: 0 0 0 0.1875rem rgb(232 199 133 / 45%);
-  --aa-surface-header: rgb(7 14 28 / 82%);
+  --aa-surface-header: rgb(7 14 28 / 52%);
   --aa-surface-card: rgb(10 22 40 / 42%);
   --aa-surface-step: rgb(10 22 40 / 45%);
   --aa-surface-gold-subtle: rgb(212 168 87 / 8%);

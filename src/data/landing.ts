@@ -23,7 +23,9 @@ export interface SummaryItem {
 }
 
 export interface Metric {
-  value: string;
+  value: number;
+  prefix?: string;
+  suffix?: string;
   label: string;
 }
 
@@ -57,6 +59,14 @@ export interface Partner {
   image: string;
   fallback: string;
   alt: string;
+  width: number;
+  height: number;
+}
+
+export interface CohortCompany {
+  name: string;
+  slug: string;
+  image: string;
   width: number;
   height: number;
 }
@@ -135,7 +145,7 @@ export interface LandingContent {
     titleStart: string;
     titleAccent: string;
     description: string;
-    names: string[];
+    companies: CohortCompany[];
     image: string;
     fallback: string;
     alt: string;
@@ -202,10 +212,10 @@ export const landingContent: LandingContent = {
     knowMoreLabel: "Know More",
     knowMoreHref: "#about",
     metrics: [
-      { value: "$15M", label: "Target fund pool" },
-      { value: "10", label: "Startups selected" },
-      { value: "6 mo", label: "Program length" },
-      { value: "150+", label: "Network members" },
+      { value: 15, prefix: "$", suffix: "M", label: "Target fund pool" },
+      { value: 10, label: "Startups selected" },
+      { value: 6, suffix: " mo", label: "Program length" },
+      { value: 150, suffix: "+", label: "Network members" },
     ],
   },
   origin: {
@@ -312,7 +322,14 @@ export const landingContent: LandingContent = {
     titleStart: "Selected",
     titleAccent: "cohort.",
     description: "Ten early-to-growth stage startups, hand-picked across Artificial Intelligence, Sustainability, Electric Mobility, PropTech and DeepTech.",
-    names: ["SATSURE", "INDRAJAAL", "CTRUH", "AquaAirX", "CONSTEMS-AI", "LivNSense"],
+    companies: [
+      { name: "SatSure", slug: "satsure", image: `${assetRoot}/cohort-logos/satsure.svg`, width: 667, height: 103 },
+      { name: "Indrajaal", slug: "indrajaal", image: `${assetRoot}/cohort-logos/indrajaal.svg`, width: 85, height: 50 },
+      { name: "Ctruh", slug: "ctruh", image: `${assetRoot}/cohort-logos/ctruh-wordmark.png`, width: 8338, height: 1646 },
+      { name: "AquaAirX", slug: "aquaairx", image: `${assetRoot}/cohort-logos/aquaairx-header.png`, width: 542, height: 182 },
+      { name: "Constems-AI", slug: "constems-ai", image: `${assetRoot}/cohort-logos/constems-favicon.png`, width: 192, height: 192 },
+      { name: "LivNSense", slug: "livnsense", image: `${assetRoot}/cohort-logos/livnsense-products.png`, width: 376, height: 369 },
+    ],
     image: `${assetRoot}/cohort-strip.webp`, fallback: `${assetRoot}/cohort-strip.png`,
     alt: "Selected cohort: SATSURE, INDRAJAAL, CTRUH, AquaAirX, CONSTEMS-AI, and LivNSense",
     width: 2880,

@@ -1,6 +1,8 @@
 import type { LandingContent } from "@/data/landing";
 import { LandingContainer } from "@/components/ui/landing-container";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 
 interface JourneySectionProps {
   content: LandingContent["journey"];
@@ -12,13 +14,19 @@ export function JourneySection({ content }: JourneySectionProps) {
       <LandingContainer>
         <SectionHeading label={content.label} titleStart={content.titleStart} titleAccent={content.titleAccent} />
         <p className="aa-section-intro">{content.description}</p>
-        <ol className="aa-journey-list">
-          {content.steps.map((step) => (
-            <li key={step.week}>
-              <span>{step.week}</span>
-              <strong>{step.title}</strong>
-              <p>{step.description}</p>
-              <i aria-hidden="true" />
+        <ol className="aa-journey-stepper">
+          {content.steps.map((step, index) => (
+            <li key={step.week} aria-current={index === 2 ? "step" : undefined}>
+              <div className="aa-journey-stepper__marker" aria-hidden="true">
+                <Separator orientation="vertical" className="aa-journey-stepper__connector aa-journey-stepper__connector--vertical" />
+                <Separator className="aa-journey-stepper__connector aa-journey-stepper__connector--horizontal" />
+                <span className="aa-journey-stepper__node">{String(index + 1).padStart(2, "0")}</span>
+              </div>
+              <div className="aa-journey-stepper__copy">
+                <Badge variant="outline" className="aa-journey-stepper__week">{step.week}</Badge>
+                <strong>{step.title}</strong>
+                <p>{step.description}</p>
+              </div>
             </li>
           ))}
         </ol>

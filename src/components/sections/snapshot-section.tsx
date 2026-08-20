@@ -39,7 +39,7 @@ export function SnapshotSection({ content }: SnapshotSectionProps) {
             {content.items.map((item, index) => {
               const Icon = snapshotIcons[item.icon] ?? UsersRound;
               return (
-                <li key={item.title}>
+                <li className="aa-snapshot-list__item" key={item.title}>
                   <span className="aa-snapshot-list__number">{String(index + 1).padStart(2, "0")}</span>
                   <span className="aa-icon-box"><Icon aria-hidden="true" /></span>
                   <span>
