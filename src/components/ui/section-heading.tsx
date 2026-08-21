@@ -22,15 +22,7 @@ export function SectionHeading({
 
   return (
     <header className={`aa-section-heading aa-section-heading--${align}`}>
-      <span className="aa-eyebrow">
-        {shouldReduceMotion ? (
-          label
-        ) : (
-          <TextAnimate as="span" animation="blurInUp" by="text" once duration={0.45}>
-            {label}
-          </TextAnimate>
-        )}
-      </span>
+      <SectionEyebrow label={label} reduceMotion={shouldReduceMotion} />
       <AnimatedTitle
         id={headingId}
         titleStart={titleStart}
@@ -45,7 +37,7 @@ interface AnimatedTitleProps {
   titleStart: string;
   titleAccent: string;
   id?: string;
-  reduceMotion?: boolean;
+  reduceMotion?: boolean | null;
 }
 
 export function AnimatedTitle({
@@ -81,5 +73,36 @@ export function AnimatedTitle({
         </TextAnimate>
       </em>
     </h2>
+  );
+}
+
+
+interface SectionEyebrowProps {
+  label: string;
+  reduceMotion?: boolean | null;
+}
+
+/**
+ * Section kicker label ("Start of the journey", "The roadmap"). Slides in from
+ * the left one word at a time, so it reads distinctly from the blur-up used on
+ * the titles it introduces.
+ */
+export function SectionEyebrow({ label, reduceMotion }: SectionEyebrowProps) {
+  return (
+    <span className="aa-eyebrow">
+      {reduceMotion ? (
+        label
+      ) : (
+        <TextAnimate
+          as="span"
+          animation="slideRight"
+          by="word"
+          once
+          duration={0.55}
+        >
+          {label}
+        </TextAnimate>
+      )}
+    </span>
   );
 }

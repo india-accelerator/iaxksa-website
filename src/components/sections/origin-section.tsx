@@ -26,6 +26,14 @@ export function OriginSection({ content }: OriginSectionProps) {
             className="aa-origin-card__art"
           />
           <div className="aa-origin-card__copy">
+            <LandingPicture
+              src={content.partnerWordmark}
+              fallback={content.partnerWordmarkFallback}
+              alt={content.partnerName}
+              width={2744}
+              height={313}
+              className="aa-origin-card__credit"
+            />
             <span className="aa-kicker">{content.meta}</span>
             <p>
               <em>{content.paragraphs[0].split(", powered")[0]}</em>

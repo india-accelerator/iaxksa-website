@@ -9,6 +9,7 @@ interface LandingHeaderProps {
   navigation: LandingContent["navigation"];
   applyLabel: string;
   applyHref: string;
+  homeHref?: string;
 }
 
 export function LandingHeader({
@@ -16,11 +17,12 @@ export function LandingHeader({
   navigation,
   applyLabel,
   applyHref,
+  homeHref,
 }: LandingHeaderProps) {
   return (
     <header className="aa-header">
       <LandingContainer className="aa-header__inner">
-        <LandingBrand {...brand} />
+        <LandingBrand {...brand} homeHref={homeHref} />
         <nav className="aa-nav aa-nav--desktop" aria-label="Primary navigation">
           {navigation.map((item) => (
             <a key={item.href} href={item.href}>{item.label}</a>

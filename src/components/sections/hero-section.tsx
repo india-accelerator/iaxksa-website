@@ -35,7 +35,7 @@ export function HeroSection({ content, applyLabel, applyHref }: HeroSectionProps
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="aa-hero" aria-labelledby="landing-title">
+    <section className="aa-hero aa-hero--enter" aria-labelledby="landing-title">
       <LandingContainer>
         <div className="aa-hero__grid">
           <div className="aa-hero__copy">
@@ -112,7 +112,7 @@ export function HeroSection({ content, applyLabel, applyHref }: HeroSectionProps
                       {metric.prefix}
                       <NumberTicker
                         aria-hidden="true"
-                        delay={index * 0.08}
+                        delay={0.95 + index * 0.08}
                         value={metric.value}
                       />
                       {metric.suffix}
@@ -136,7 +136,7 @@ export function HeroSection({ content, applyLabel, applyHref }: HeroSectionProps
                       animation="blurInUp"
                       by="word"
                       once
-                      delay={0.18}
+                      delay={0.85}
                       duration={0.5}
                       accessible={false}
                     >

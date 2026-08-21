@@ -93,6 +93,11 @@ interface TextAnimateProps extends Omit<MotionProps, "children"> {
    * Whether to enable accessibility features (default: true)
    */
   accessible?: boolean
+  /**
+   * How much of the element must be on screen before it animates (0-1).
+   * Keeps the entrance from firing on a sliver of the section.
+   */
+  amount?: number
 }
 
 const staggerTimings: Record<AnimationType, number> = {
@@ -341,6 +346,7 @@ const TextAnimateBase = ({
   by = "word",
   animation = "fadeIn",
   accessible = true,
+  amount = 0.4,
   ...props
 }: TextAnimateProps) => {
   const MotionComponent = motionElements[Component]
@@ -416,7 +422,7 @@ const TextAnimateBase = ({
         animate={startOnView ? undefined : "show"}
         exit="exit"
         className={cn("whitespace-pre-wrap", className)}
-        viewport={{ once }}
+        viewport={{ once, amount }}
         aria-label={accessible ? children : undefined}
         {...props}
       >

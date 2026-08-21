@@ -5,13 +5,21 @@ import { LandingContainer } from "@/components/ui/landing-container";
 interface LandingFooterProps {
   brand: LandingContent["brand"];
   footer: LandingContent["footer"];
+  homeHref?: string;
 }
 
-export function LandingFooter({ brand, footer }: LandingFooterProps) {
+export function LandingFooter({ brand, footer, homeHref }: LandingFooterProps) {
   return (
     <footer className="aa-footer">
       <LandingContainer className="aa-footer__inner">
-        <LandingBrand {...brand} poweredBy={footer.poweredBy} compact />
+        <LandingBrand
+          {...brand}
+          homeHref={homeHref}
+          poweredBy={footer.poweredBy}
+          poweredByPrefix={footer.poweredByPrefix}
+          poweredBySuffix={footer.poweredBySuffix}
+          compact
+        />
         <nav aria-label="Footer navigation">
           {footer.navigation.map((item) => <a key={item.label} href={item.href}>{item.label}</a>)}
         </nav>

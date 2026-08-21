@@ -77,6 +77,9 @@ export interface LandingContent {
     poweredBy: string;
     mark: string;
     markFallback: string;
+    markAlt: string;
+    partnerWordmark: string;
+    partnerWordmarkFallback: string;
   };
   navigation: NavigationItem[];
   applyLabel: string;
@@ -102,6 +105,9 @@ export interface LandingContent {
     label: string;
     titleStart: string;
     titleAccent: string;
+    partnerName: string;
+    partnerWordmark: string;
+    partnerWordmarkFallback: string;
     meta: string;
     paragraphs: string[];
     emphasized: string[];
@@ -168,9 +174,39 @@ export interface LandingContent {
   };
   footer: {
     poweredBy: string;
+    poweredByPrefix: string;
+    poweredBySuffix: string;
     navigation: NavigationItem[];
     copyright: string;
   };
+  apply: {
+    label: string;
+    titleStart: string;
+    titleAccent: string;
+    intro: string;
+    closedNote: string;
+    submitLabel: string;
+    submittingLabel: string;
+    fields: ApplyField[];
+    success: {
+      title: string;
+      subtitle: string;
+      bodyLead: string;
+      bodyLink: string;
+      ctaHref: string;
+      deadlineNote: string;
+      backLabel: string;
+      backHref: string;
+    };
+  };
+}
+
+export interface ApplyField {
+  name: "name" | "legalName" | "ceoEmail" | "ceoPhone";
+  label: string;
+  placeholder: string;
+  type: "text" | "email" | "tel";
+  autoComplete: string;
 }
 
 const assetRoot = "/assets/landing";
@@ -179,8 +215,11 @@ export const landingContent: LandingContent = {
   brand: {
     name: "Arabian Accelerator",
     poweredBy: "Powered by India Accelerator",
-    mark: `${assetRoot}/brand-mark.webp`,
-    markFallback: `${assetRoot}/brand-mark.png`,
+    mark: `${assetRoot}/india-accelerator-symbol.webp`,
+    markFallback: `${assetRoot}/india-accelerator-symbol.png`,
+    markAlt: "India Accelerator",
+    partnerWordmark: `${assetRoot}/india-accelerator-wordmark.webp`,
+    partnerWordmarkFallback: `${assetRoot}/india-accelerator-wordmark.png`,
   },
   navigation: [
     { label: "About", href: "#about" },
@@ -210,7 +249,7 @@ export const landingContent: LandingContent = {
     cohortLabel: "Cohort Composition",
     cohortValue: "10 Early → Growth-stage Indian startups",
     knowMoreLabel: "Know More",
-    knowMoreHref: "#about",
+    knowMoreHref: "https://indiaaccelerator.co",
     metrics: [
       { value: 15, prefix: "$", suffix: "M", label: "Target fund pool" },
       { value: 10, label: "Startups selected" },
@@ -222,6 +261,9 @@ export const landingContent: LandingContent = {
     label: "Start of the journey",
     titleStart: "How it",
     titleAccent: "began.",
+    partnerName: "India Accelerator",
+    partnerWordmark: `${assetRoot}/india-accelerator-wordmark.webp`,
+    partnerWordmarkFallback: `${assetRoot}/india-accelerator-wordmark.png`,
     meta: "Riyadh · 2025",
     paragraphs: [
       "Arabian Accelerator, powered by India Accelerator and NTDP — a national program contributing to the Kingdom's technology ecosystem — empowers Indian startup founders building in",
@@ -358,6 +400,8 @@ export const landingContent: LandingContent = {
   },
   footer: {
     poweredBy: "Powered by India Accelerator × NTDP",
+    poweredByPrefix: "Powered by",
+    poweredBySuffix: "× NTDP",
     navigation: [
       { label: "About", href: "#about" },
       { label: "Journey", href: "#journey" },
@@ -366,5 +410,30 @@ export const landingContent: LandingContent = {
       { label: "Apply", href: "/apply" },
     ],
     copyright: "© 2026 · Riyadh · New Delhi",
+  },
+  apply: {
+    label: "Cohort 01 · Waitlist",
+    titleStart: "Apply to Arabian",
+    titleAccent: "Accelerator.",
+    intro: "Cohort 01 is closed and the ten startups have been selected. Leave your details and we will hold your place on the waitlist for the next intake.",
+    closedNote: "Applications for Cohort 01 closed on 30 Nov 2025.",
+    submitLabel: "Join the waitlist",
+    submittingLabel: "Submitting…",
+    fields: [
+      { name: "name", label: "Startup name", placeholder: "Acme Robotics", type: "text", autoComplete: "organization" },
+      { name: "legalName", label: "Legal name", placeholder: "Acme Robotics Private Limited", type: "text", autoComplete: "organization" },
+      { name: "ceoEmail", label: "Email", placeholder: "founder@acme.com", type: "email", autoComplete: "email" },
+      { name: "ceoPhone", label: "Phone number", placeholder: "+91 98765 43210", type: "tel", autoComplete: "tel" },
+    ],
+    success: {
+      title: "Cohort for this program has been selected.",
+      subtitle: "Don't Worry, you have been waitlisted",
+      bodyLead: "To Know More about the program,",
+      bodyLink: "click here",
+      ctaHref: "https://iaarabia.com",
+      deadlineNote: "Applications for Cohort 01 closed on 30 Nov 2025, so the deadline for startup applications has now passed. Waitlisted startups are contacted first if a place opens or when the next cohort is announced.",
+      backLabel: "Back to Arabian Accelerator",
+      backHref: "/",
+    },
   },
 };

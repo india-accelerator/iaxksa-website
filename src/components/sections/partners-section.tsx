@@ -2,6 +2,7 @@ import type { LandingContent } from "@/data/landing";
 import { LandingContainer } from "@/components/ui/landing-container";
 import { LandingPicture } from "@/components/ui/landing-picture";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { Reveal, RevealItem } from "@/components/ui/reveal";
 
 interface PartnersSectionProps {
   content: LandingContent["partners"];
@@ -17,9 +18,9 @@ export function PartnersSection({ content }: PartnersSectionProps) {
           titleAccent={content.titleAccent}
           align="center"
         />
-        <ul className="aa-partners__grid">
+        <Reveal as="ul" className="aa-partners__grid" stagger={0.12} amount={0.25}>
           {content.items.map((partner) => (
-            <li key={partner.name}>
+            <RevealItem as="li" from="scale" key={partner.name}>
               <LandingPicture
                 src={partner.image}
                 fallback={partner.fallback}
@@ -27,9 +28,9 @@ export function PartnersSection({ content }: PartnersSectionProps) {
                 width={partner.width}
                 height={partner.height}
               />
-            </li>
+            </RevealItem>
           ))}
-        </ul>
+        </Reveal>
       </LandingContainer>
     </section>
   );

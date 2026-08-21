@@ -3,6 +3,7 @@ import { LandingContainer } from "@/components/ui/landing-container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Reveal, RevealItem } from "@/components/ui/reveal";
 
 interface JourneySectionProps {
   content: LandingContent["journey"];
@@ -14,9 +15,13 @@ export function JourneySection({ content }: JourneySectionProps) {
       <LandingContainer>
         <SectionHeading label={content.label} titleStart={content.titleStart} titleAccent={content.titleAccent} />
         <p className="aa-section-intro">{content.description}</p>
-        <ol className="aa-journey-stepper">
+        <Reveal as="ol" className="aa-journey-stepper" stagger={0.12} amount={0.25}>
           {content.steps.map((step, index) => (
-            <li key={step.week} aria-current={index === 2 ? "step" : undefined}>
+            <RevealItem
+              as="li"
+              key={step.week}
+              ariaCurrent={index === 2 ? "step" : undefined}
+            >
               <div className="aa-journey-stepper__marker" aria-hidden="true">
                 <Separator orientation="vertical" className="aa-journey-stepper__connector aa-journey-stepper__connector--vertical" />
                 <Separator className="aa-journey-stepper__connector aa-journey-stepper__connector--horizontal" />
@@ -27,9 +32,9 @@ export function JourneySection({ content }: JourneySectionProps) {
                 <strong>{step.title}</strong>
                 <p>{step.description}</p>
               </div>
-            </li>
+            </RevealItem>
           ))}
-        </ol>
+        </Reveal>
       </LandingContainer>
     </section>
   );
