@@ -167,11 +167,26 @@ body {
   object-fit: contain;
 }
 
+.aa-origin-card__credits {
+  display: flex;
+  align-items: center;
+  gap: var(--aa-gap-4);
+  margin-block-end: var(--aa-gap-4);
+  flex-wrap: wrap;
+}
+
 .aa-origin-card__credit {
   display: block;
   width: auto;
   height: var(--aa-gap-4);
-  margin-block-end: var(--aa-gap-4);
+}
+
+.aa-origin-card__credits .aa-origin-card__credit {
+  margin-block-end: 0;
+}
+
+.aa-origin-card__credit--secondary {
+  height: calc(var(--aa-gap-4) * 1.3);
 }
 
 .aa-origin-card__credit img {
@@ -1173,14 +1188,15 @@ body {
 }
 
 .aa-partners {
-  --aa-partner-logo-h: clamp(4rem, 7vw, 6.25rem);
+  --aa-partner-logo-h: clamp(2.5rem, 6vw, 6.25rem);
 }
 
 .aa-partners__grid {
   display: grid;
-  gap: var(--aa-gap-4);
-  max-width: calc(var(--aa-container) * 0.66);
-  margin: var(--aa-gap-8) auto 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--aa-gap-2);
+  max-width: 100%;
+  margin: var(--aa-gap-6) auto 0;
   padding: 0;
   list-style: none;
 }
@@ -1192,7 +1208,7 @@ body {
   display: grid;
   overflow: hidden;
   place-items: center;
-  padding: var(--aa-gap-4) var(--aa-gap-5);
+  padding: var(--aa-gap-2) var(--aa-gap-3);
   border: var(--aa-border);
   border-color: rgb(212 168 87 / 22%);
   border-radius: var(--aa-radius-card);
@@ -1284,7 +1300,14 @@ body {
   }
 
   .aa-partners__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--aa-gap-4);
+    max-width: calc(var(--aa-container) * 0.85);
+    margin-block-start: var(--aa-gap-8);
+  }
+
+  .aa-partners__grid li {
+    padding: var(--aa-gap-4) var(--aa-gap-5);
   }
 }
 

@@ -385,6 +385,7 @@ export const landingContent: LandingContent = {
     items: [
       { name: "NTDP", image: `${assetRoot}/partner-ntdp-mark.png`, fallback: `${assetRoot}/partner-ntdp-mark.png`, alt: "National Technology Development Program", width: 334, height: 237 },
       { name: "Ministry of Investment", image: `${assetRoot}/partner-misa-mark.png`, fallback: `${assetRoot}/partner-misa-mark.png`, alt: "Saudi Ministry of Investment", width: 244, height: 70 },
+      { name: "NTDP Logo 2", image: `${assetRoot}/NTDP Logo 2.png`, fallback: `${assetRoot}/NTDP Logo 2.png`, alt: "National Technology Development Program", width: 429, height: 252 },
     ],
   },
   finalCta: {

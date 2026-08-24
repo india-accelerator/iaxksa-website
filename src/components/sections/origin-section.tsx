@@ -2,6 +2,7 @@ import type { LandingContent } from "@/data/landing";
 import { LandingContainer } from "@/components/ui/landing-container";
 import { LandingPicture } from "@/components/ui/landing-picture";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { Reveal, RevealItem } from "@/components/ui/reveal";
 
 interface OriginSectionProps {
   content: LandingContent["origin"];
@@ -16,16 +17,17 @@ export function OriginSection({ content }: OriginSectionProps) {
           titleStart={content.titleStart}
           titleAccent={content.titleAccent}
         />
-        <div className="aa-origin-card">
-          <LandingPicture
-            src={content.image}
-            fallback={content.fallback}
-            alt={content.alt}
-            width={content.width}
-            height={content.height}
-            className="aa-origin-card__art"
-          />
-          <div className="aa-origin-card__copy">
+        <Reveal className="aa-origin-card" amount={0.25} stagger={0.15}>
+          <RevealItem className="aa-origin-card__art" from="left">
+            <LandingPicture
+              src={content.image}
+              fallback={content.fallback}
+              alt={content.alt}
+              width={content.width}
+              height={content.height}
+            />
+          </RevealItem>
+          <RevealItem className="aa-origin-card__copy" from="right">
             <LandingPicture
               src={content.partnerWordmark}
               fallback={content.partnerWordmarkFallback}
@@ -43,9 +45,10 @@ export function OriginSection({ content }: OriginSectionProps) {
               ))}
               {content.paragraphs[1]}
             </p>
-          </div>
-        </div>
+          </RevealItem>
+        </Reveal>
       </LandingContainer>
     </section>
   );
 }
+
