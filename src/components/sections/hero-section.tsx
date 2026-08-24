@@ -15,6 +15,8 @@ import { LandingContainer } from "@/components/ui/landing-container";
 import { NumberTicker } from "@/components/ui/number-ticker";
 import { TextAnimate } from "@/components/ui/text-animate";
 
+import { Reveal, RevealItem } from "@/components/ui/reveal";
+
 type SvgIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
 const summaryIcons: Partial<Record<IconName, SvgIcon>> = {
@@ -115,8 +117,15 @@ export function HeroSection({ content, applyLabel, applyHref }: HeroSectionProps
             </dl>
           </div>
 
-          <aside className="aa-summary-card" aria-label={content.summaryTitle}>
-            <div className="aa-summary-card__heading">
+          <Reveal
+            as="aside"
+            className="aa-summary-card"
+            ariaLabel={content.summaryTitle}
+            from="right"
+            delay={0.4}
+            stagger={0.1}
+          >
+            <RevealItem className="aa-summary-card__heading" from="right">
               <div>
                 <h2>
                   {shouldReduceMotion ? (
@@ -138,8 +147,8 @@ export function HeroSection({ content, applyLabel, applyHref }: HeroSectionProps
                 <span>{content.summaryMeta}</span>
               </div>
               <span className="aa-chip">{content.version}</span>
-            </div>
-            <ul className="aa-summary-grid">
+            </RevealItem>
+            <RevealItem as="ul" className="aa-summary-grid" from="right">
               {content.summaryItems.map((item) => {
                 const Icon = summaryIcons[item.icon] ?? UsersRound;
                 return (
@@ -159,14 +168,14 @@ export function HeroSection({ content, applyLabel, applyHref }: HeroSectionProps
                   <span className="aa-summary-grid__value">{content.cohortValue}</span>
                 </span>
               </li>
-            </ul>
-            <div className="aa-summary-card__actions">
+            </RevealItem>
+            <RevealItem className="aa-summary-card__actions" from="right">
               <LandingButtonLink href={applyHref}>{applyLabel}</LandingButtonLink>
               <LandingButtonLink href={content.knowMoreHref} variant="outline">
                 {content.knowMoreLabel}
               </LandingButtonLink>
-            </div>
-          </aside>
+            </RevealItem>
+          </Reveal>
         </div>
       </LandingContainer>
     </section>
