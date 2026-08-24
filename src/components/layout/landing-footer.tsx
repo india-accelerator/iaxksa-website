@@ -12,14 +12,7 @@ export function LandingFooter({ brand, footer, homeHref }: LandingFooterProps) {
   return (
     <footer className="aa-footer">
       <LandingContainer className="aa-footer__inner">
-        <LandingBrand
-          {...brand}
-          homeHref={homeHref}
-          poweredBy={footer.poweredBy}
-          poweredByPrefix={footer.poweredByPrefix}
-          poweredBySuffix={footer.poweredBySuffix}
-          compact
-        />
+        <LandingBrand {...brand} homeHref={homeHref} wordmarkOnly compact />
         <nav aria-label="Footer navigation">
           {footer.navigation.map((item) => <a key={item.label} href={item.href}>{item.label}</a>)}
         </nav>

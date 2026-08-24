@@ -1,4 +1,4 @@
-import { Fraunces, Geist, Geist_Mono, Inter, JetBrains_Mono, Poppins } from "next/font/google";
+import { Geist, Geist_Mono, Poppins, Roboto, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -20,20 +20,22 @@ const poppins = Poppins({
   preload: false,
 });
 
-const inter = Inter({
+// Roboto across the board: body copy, display headings and the tracked labels.
+const roboto = Roboto({
   variable: "--font-aa-body",
   subsets: ["latin"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const fraunces = Fraunces({
+const robotoDisplay = Roboto({
   variable: "--font-aa-display",
   subsets: ["latin"],
   style: ["normal", "italic"],
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const robotoMono = Roboto_Mono({
   variable: "--font-aa-mono",
   subsets: ["latin"],
   display: "swap",
@@ -48,7 +50,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="light">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${roboto.variable} ${robotoDisplay.variable} ${robotoMono.variable} antialiased`}
       >
         {children}
       </body>

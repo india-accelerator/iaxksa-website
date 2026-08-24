@@ -1,3 +1,7 @@
+body {
+  background-color: var(--aa-ink-950);
+}
+
 .aa-page {
   --aa-gutter-current: var(--aa-gap-4);
   position: relative;
@@ -5,7 +9,7 @@
   min-height: 100vh;
   color: var(--aa-body);
   background: var(--aa-gradient-page);
-  font-family: var(--font-aa-body), sans-serif;
+  font-family: var(--font-aa-body), Roboto, sans-serif;
 }
 
 .aa-page::before {
@@ -91,7 +95,7 @@
 
 .aa-brand__copy strong {
   color: var(--aa-ivory);
-  font-family: var(--font-aa-display), serif;
+  font-family: var(--font-aa-display), Roboto, sans-serif;
   font-size: var(--aa-type-small);
   font-weight: 600;
   line-height: var(--aa-leading-small);
@@ -101,7 +105,7 @@
 .aa-brand__copy small {
   overflow: hidden;
   color: var(--aa-muted);
-  font-family: var(--font-aa-mono), monospace;
+  font-family: var(--font-aa-mono), "Roboto Mono", monospace;
   font-size: calc(var(--aa-type-eyebrow) * 0.73);
   font-weight: 500;
   letter-spacing: var(--aa-tracking-logo);
@@ -109,6 +113,31 @@
   text-transform: uppercase;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.aa-brand--wordmark {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.aa-brand__lockup {
+  display: block;
+  width: auto;
+  height: var(--aa-gap-5);
+}
+
+.aa-brand__lockup img {
+  display: block;
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 30rem) {
+  .aa-brand__lockup {
+    height: var(--aa-gap-4);
+  }
 }
 
 .aa-brand__powered {
@@ -162,7 +191,7 @@
 /* Nav links pick up the display face too, so the row reads as one voice
    with the brand wordmark instead of falling back to the body sans. */
 .aa-nav a:not(.aa-button) {
-  font-family: var(--font-aa-display), serif;
+  font-family: var(--font-aa-display), Roboto, sans-serif;
   font-size: calc(var(--aa-type-nav) * 0.97);
   font-weight: 500;
   letter-spacing: 0.01em;
@@ -240,7 +269,7 @@
   padding-inline: var(--aa-gap-4);
   border: var(--aa-border);
   border-radius: var(--aa-radius-pill);
-  font-family: var(--font-aa-display), serif;
+  font-family: var(--font-aa-display), Roboto, sans-serif;
   font-size: calc(var(--aa-type-small) * 1.06);
   font-weight: 600;
   letter-spacing: 0.005em;
@@ -298,7 +327,7 @@
   align-items: center;
   gap: var(--aa-gap-2);
   color: var(--aa-gold);
-  font-family: var(--font-aa-mono), monospace;
+  font-family: var(--font-aa-mono), "Roboto Mono", monospace;
   font-size: var(--aa-type-eyebrow);
   font-weight: 500;
   letter-spacing: var(--aa-tracking-eyebrow);
@@ -335,7 +364,7 @@
   display: grid;
   margin: var(--aa-gap-5) 0 var(--aa-gap-5);
   color: var(--aa-ivory);
-  font-family: var(--font-aa-display), serif;
+  font-family: var(--font-aa-display), Roboto, sans-serif;
   font-size: clamp(var(--aa-type-display), 12vw, var(--aa-type-hero));
   font-weight: 300;
   letter-spacing: -0.045em;
@@ -382,7 +411,7 @@
 
 .aa-metrics dt {
   color: var(--aa-gold-soft);
-  font-family: var(--font-aa-display), serif;
+  font-family: var(--font-aa-display), Roboto, sans-serif;
   font-size: var(--aa-type-stat);
   font-weight: 400;
   line-height: 1;
@@ -392,7 +421,7 @@
   max-width: var(--aa-gap-9);
   margin: 0;
   color: var(--aa-muted);
-  font-family: var(--font-aa-mono), monospace;
+  font-family: var(--font-aa-mono), "Roboto Mono", monospace;
   font-size: var(--aa-type-eyebrow);
   font-weight: 500;
   letter-spacing: var(--aa-tracking-stat);
@@ -423,7 +452,7 @@
 .aa-benefit-card h3 {
   margin: 0;
   color: var(--aa-ivory);
-  font-family: var(--font-aa-display), serif;
+  font-family: var(--font-aa-display), Roboto, sans-serif;
   font-weight: 400;
 }
 
@@ -436,7 +465,7 @@
 .aa-chip,
 .aa-summary-grid__label {
   color: var(--aa-muted);
-  font-family: var(--font-aa-mono), monospace;
+  font-family: var(--font-aa-mono), "Roboto Mono", monospace;
   font-size: var(--aa-type-eyebrow);
   font-weight: 500;
   letter-spacing: var(--aa-tracking-eyebrow);
@@ -585,7 +614,7 @@
 .aa-section-heading h2 {
   margin: 0;
   color: var(--aa-ivory);
-  font-family: var(--font-aa-display), serif;
+  font-family: var(--font-aa-display), Roboto, sans-serif;
   font-size: clamp(calc(var(--aa-type-card-title) * 1.2), 9vw, var(--aa-type-display));
   font-weight: 400;
   letter-spacing: -0.035em;
@@ -619,8 +648,7 @@
 .aa-benefit-card__art,
 .aa-partners__grid picture {
   display: block;
-  overflow: hidden;
-  border-radius: var(--aa-radius-small);
+  width: 100%;
 }
 
 .aa-origin-card__art img,
@@ -628,8 +656,8 @@
 .aa-partners__grid img {
   display: block;
   width: 100%;
-  height: auto;
-  object-fit: cover;
+  height: var(--aa-partner-logo-h);
+  object-fit: contain;
 }
 
 .aa-origin-card__copy,
@@ -646,7 +674,7 @@
 
 .aa-origin-card__copy p em {
   color: var(--aa-gold-soft);
-  font-family: var(--font-aa-display), serif;
+  font-family: var(--font-aa-display), Roboto, sans-serif;
   font-weight: 400;
 }
 
@@ -719,7 +747,7 @@
 
 .aa-snapshot-list__number {
   color: var(--aa-gold-soft);
-  font-family: var(--font-aa-mono), monospace;
+  font-family: var(--font-aa-mono), "Roboto Mono", monospace;
   font-size: var(--aa-type-eyebrow);
   font-weight: 500;
   letter-spacing: var(--aa-tracking-eyebrow);
@@ -734,7 +762,7 @@
 
 .aa-snapshot-list strong {
   color: var(--aa-ivory);
-  font-family: var(--font-aa-display), serif;
+  font-family: var(--font-aa-display), Roboto, sans-serif;
   font-size: var(--aa-type-body-large);
   font-weight: 600;
   line-height: var(--aa-leading-card);
@@ -836,7 +864,7 @@
 .aa-market-card h4 {
   margin: 0;
   color: var(--aa-gold-light);
-  font-family: var(--font-aa-display), serif;
+  font-family: var(--font-aa-display), Roboto, sans-serif;
   font-size: clamp(var(--aa-type-card-title), 8vw, var(--aa-type-display));
   font-weight: 400;
   line-height: var(--aa-leading-display);
@@ -865,7 +893,7 @@
   border-color: var(--aa-border-gold-46);
   border-radius: var(--aa-radius-pill);
   color: var(--aa-gold);
-  font-family: var(--font-aa-mono), monospace;
+  font-family: var(--font-aa-mono), "Roboto Mono", monospace;
   font-size: var(--aa-type-eyebrow);
   letter-spacing: calc(var(--aa-tracking-eyebrow) * 0.65);
   text-transform: uppercase;
@@ -915,7 +943,7 @@
   border-radius: 50%;
   color: var(--aa-body);
   background: var(--aa-ink-900);
-  font-family: var(--font-aa-mono), monospace;
+  font-family: var(--font-aa-mono), "Roboto Mono", monospace;
   font-size: var(--aa-type-eyebrow);
   letter-spacing: 0.08em;
 }
@@ -991,7 +1019,7 @@
   border-color: var(--aa-border-gold-46);
   color: var(--aa-gold);
   background: transparent;
-  font-family: var(--font-aa-mono), monospace;
+  font-family: var(--font-aa-mono), "Roboto Mono", monospace;
   font-size: var(--aa-type-eyebrow);
   letter-spacing: calc(var(--aa-tracking-eyebrow) * 0.72);
   text-transform: uppercase;
@@ -1001,7 +1029,7 @@
   display: block;
   margin-block-start: var(--aa-gap-2);
   color: var(--aa-ivory);
-  font-family: var(--font-aa-display), serif;
+  font-family: var(--font-aa-display), Roboto, sans-serif;
   font-size: var(--aa-type-body-large);
   font-weight: 600;
   line-height: var(--aa-leading-card);
@@ -1099,8 +1127,8 @@
    place-items:center, so a percentage height has no definite containing block
    to resolve against and the image falls back to its intrinsic ratio. */
 .aa-cohort {
-  --aa-cohort-logo-w: clamp(7rem, 9vw, 9.5rem);
-  --aa-cohort-logo-h: clamp(2.75rem, 3.5vw, 3.75rem);
+  --aa-cohort-logo-w: clamp(7.5rem, 10vw, 10.5rem);
+  --aa-cohort-logo-h: clamp(3.5rem, 4.75vw, 4.75rem);
 }
 
 .aa-cohort__logo {
@@ -1127,14 +1155,12 @@
 /* Square marks read far larger than wordmarks at equal cap height. */
 .aa-cohort__logo-image--indrajaal,
 .aa-cohort__logo-image--constems-ai,
-.aa-cohort__logo-image--livnsense {
-  height: calc(var(--aa-cohort-logo-h) * 0.84);
-}
-
-/* A solid-black wordmark: there is no colour to restore, and its legible
-   form on this background is the inverted one, hover included. */
-.aa-cohort__logo-image--ctruh {
-  filter: grayscale(1) brightness(0) invert(1);
+.aa-cohort__logo-image--livnsense,
+.aa-cohort__logo-image--ctruh,
+.aa-cohort__logo-image--aquaairx,
+.aa-cohort__logo-image--battwheelz,
+.aa-cohort__logo-image--daten-wissen {
+  height: calc(var(--aa-cohort-logo-h) * 0.92);
 }
 
 @media (hover: hover) {
@@ -1144,22 +1170,41 @@
     transform: scale(1.08);
   }
 
-  .aa-cohort__logo:hover .aa-cohort__logo-image--ctruh {
-    filter: brightness(0) invert(1);
-  }
+}
+
+.aa-partners {
+  --aa-partner-logo-h: clamp(4rem, 7vw, 6.25rem);
 }
 
 .aa-partners__grid {
   display: grid;
   gap: var(--aa-gap-4);
-  margin: var(--aa-gap-8) 0 0;
+  max-width: calc(var(--aa-container) * 0.66);
+  margin: var(--aa-gap-8) auto 0;
   padding: 0;
   list-style: none;
 }
 
+/* Both marks are dark artwork on a transparent ground and are official
+   government/national-program logos, so they sit on a light plate at their
+   own colours rather than being recoloured to suit the dark page. */
 .aa-partners__grid li {
+  display: grid;
   overflow: hidden;
+  place-items: center;
+  padding: var(--aa-gap-4) var(--aa-gap-5);
+  border: var(--aa-border);
+  border-color: rgb(212 168 87 / 22%);
   border-radius: var(--aa-radius-card);
+  background: var(--aa-ivory);
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 260ms ease;
+}
+
+@media (hover: hover) {
+  .aa-partners__grid li:hover {
+    box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 28%);
+    transform: translateY(calc(var(--aa-gap-1) / -2));
+  }
 }
 
 .aa-final-cta {
@@ -1176,7 +1221,7 @@
   max-width: calc(var(--aa-container) * 0.68);
   margin: var(--aa-gap-4) auto var(--aa-gap-5);
   color: var(--aa-ivory);
-  font-family: var(--font-aa-display), serif;
+  font-family: var(--font-aa-display), Roboto, sans-serif;
   font-size: clamp(var(--aa-type-display), 12vw, var(--aa-type-cta));
   font-weight: 300;
   letter-spacing: -0.045em;
@@ -1209,7 +1254,7 @@
   flex-wrap: wrap;
   gap: var(--aa-gap-4);
   color: var(--aa-muted);
-  font-family: var(--font-aa-mono), monospace;
+  font-family: var(--font-aa-mono), "Roboto Mono", monospace;
   font-size: var(--aa-type-eyebrow);
   letter-spacing: calc(var(--aa-tracking-eyebrow) * 0.75);
   text-transform: uppercase;
@@ -1218,7 +1263,7 @@
 .aa-footer p {
   margin: 0;
   color: var(--aa-muted);
-  font-family: var(--font-aa-mono), monospace;
+  font-family: var(--font-aa-mono), "Roboto Mono", monospace;
   font-size: var(--aa-type-eyebrow);
   letter-spacing: calc(var(--aa-tracking-eyebrow) * 0.75);
 }
@@ -1239,7 +1284,7 @@
   }
 
   .aa-partners__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1706,21 +1751,16 @@
     position: absolute;
     z-index: -1;
     inset-block: calc(var(--aa-gap-9) * -1) auto;
-    inset-inline: calc(var(--aa-gap-8) * -1);
+    inset-inline: 0;
     height: 130%;
     background: radial-gradient(
-      55% 50% at 24% 32%,
+      72% 50% at 24% 32%,
       rgb(212 168 87 / 15%),
       transparent 72%
     );
     content: "";
     pointer-events: none;
     animation: aa-hero-bloom 1.7s var(--aa-hero-ease) both;
-  }
-
-  .aa-hero--enter .aa-kicker::before {
-    transform-origin: left center;
-    animation: aa-hero-rule 0.75s var(--aa-hero-ease) both;
   }
 
   .aa-hero--enter .aa-actions > * {
@@ -1768,18 +1808,6 @@
   to {
     opacity: 1;
     transform: scale(1);
-  }
-}
-
-@keyframes aa-hero-rule {
-  from {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-
-  to {
-    opacity: 0.72;
-    transform: scaleX(1);
   }
 }
 
@@ -1850,7 +1878,7 @@
 .aa-apply__closed {
   margin: 0 0 var(--aa-gap-6);
   color: var(--aa-gold-soft);
-  font-family: var(--font-aa-mono), monospace;
+  font-family: var(--font-aa-mono), "Roboto Mono", monospace;
   font-size: var(--aa-type-eyebrow);
   letter-spacing: calc(var(--aa-tracking-eyebrow) * 0.7);
   text-transform: uppercase;
@@ -1877,7 +1905,7 @@
 
 .aa-field__label {
   color: var(--aa-muted);
-  font-family: var(--font-aa-mono), monospace;
+  font-family: var(--font-aa-mono), "Roboto Mono", monospace;
   font-size: var(--aa-type-eyebrow);
   letter-spacing: calc(var(--aa-tracking-eyebrow) * 0.7);
   text-transform: uppercase;
@@ -1891,7 +1919,7 @@
   border-radius: var(--aa-radius-control);
   color: var(--aa-ivory);
   background: rgb(10 22 40 / 62%);
-  font-family: var(--font-aa-body), sans-serif;
+  font-family: var(--font-aa-body), Roboto, sans-serif;
   font-size: var(--aa-type-small);
   transition: border-color 180ms ease, background-color 180ms ease;
 }
@@ -1953,7 +1981,7 @@
 .aa-apply__result h1 {
   margin: 0;
   color: var(--aa-ivory);
-  font-family: var(--font-aa-display), serif;
+  font-family: var(--font-aa-display), Roboto, sans-serif;
   font-size: clamp(var(--aa-type-display), 6vw, var(--aa-type-hero));
   font-weight: 300;
   letter-spacing: -0.035em;
@@ -1963,7 +1991,7 @@
 .aa-apply__result h2 {
   margin: var(--aa-gap-4) 0 0;
   color: var(--aa-gold-light);
-  font-family: var(--font-aa-display), serif;
+  font-family: var(--font-aa-display), Roboto, sans-serif;
   font-size: clamp(var(--aa-type-card-title), 3.5vw, var(--aa-type-display));
   font-weight: 400;
   line-height: var(--aa-leading-display);

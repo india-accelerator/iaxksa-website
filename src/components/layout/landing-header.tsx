@@ -22,7 +22,7 @@ export function LandingHeader({
   return (
     <header className="aa-header">
       <LandingContainer className="aa-header__inner">
-        <LandingBrand {...brand} homeHref={homeHref} />
+        <LandingBrand {...brand} homeHref={homeHref} wordmarkOnly />
         <nav className="aa-nav aa-nav--desktop" aria-label="Primary navigation">
           {navigation.map((item) => (
             <a key={item.href} href={item.href}>{item.label}</a>

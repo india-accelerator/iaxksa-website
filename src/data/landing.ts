@@ -85,7 +85,6 @@ export interface LandingContent {
   applyLabel: string;
   applyHref: string;
   hero: {
-    eyebrow: string;
     titleStart: string;
     titleAccent: string;
     description: string;
@@ -230,7 +229,6 @@ export const landingContent: LandingContent = {
   applyLabel: "Apply Now",
   applyHref: "/apply",
   hero: {
-    eyebrow: "Cohort 01 · Applications Open",
     titleStart: "Expand into",
     titleAccent: "Saudi Arabia.",
     description:
@@ -241,7 +239,7 @@ export const landingContent: LandingContent = {
     summaryMeta: "Cohort 01 · Riyadh",
     version: "V. 2026",
     summaryItems: [
-      { label: "Dates", value: "8 Dec 2025 →\n28 Feb 2026", icon: "calendar" },
+      { label: "Timeline", value: "July →\nDecember", icon: "calendar" },
       { label: "Duration", value: "6 Months\nintensive", icon: "clock" },
       { label: "Format", value: "Hybrid · Riyadh\n+ Remote", icon: "location" },
       { label: "Investment", value: "$15M fund pool", icon: "investment" },
@@ -365,12 +363,15 @@ export const landingContent: LandingContent = {
     titleAccent: "cohort.",
     description: "Ten early-to-growth stage startups, hand-picked across Artificial Intelligence, Sustainability, Electric Mobility, PropTech and DeepTech.",
     companies: [
-      { name: "SatSure", slug: "satsure", image: `${assetRoot}/cohort-logos/satsure.svg`, width: 667, height: 103 },
-      { name: "Indrajaal", slug: "indrajaal", image: `${assetRoot}/cohort-logos/indrajaal.svg`, width: 85, height: 50 },
-      { name: "Ctruh", slug: "ctruh", image: `${assetRoot}/cohort-logos/ctruh-wordmark.png`, width: 8338, height: 1646 },
-      { name: "AquaAirX", slug: "aquaairx", image: `${assetRoot}/cohort-logos/aquaairx-header.png`, width: 542, height: 182 },
-      { name: "Constems-AI", slug: "constems-ai", image: `${assetRoot}/cohort-logos/constems-favicon.png`, width: 192, height: 192 },
-      { name: "LivNSense", slug: "livnsense", image: `${assetRoot}/cohort-logos/livnsense-products.png`, width: 376, height: 369 },
+      { name: "SatSure", slug: "satsure", image: `${assetRoot}/cohort-logos/satsure-light.png`, width: 353, height: 57 },
+      { name: "Indrajaal", slug: "indrajaal", image: `${assetRoot}/cohort-logos/indrajaal-light.png`, width: 486, height: 282 },
+      { name: "Ctruh", slug: "ctruh", image: `${assetRoot}/Ctruh.png`, width: 447, height: 447 },
+      { name: "AquaAirX", slug: "aquaairx", image: `${assetRoot}/AquaAirX.png`, width: 500, height: 500 },
+      { name: "Constems-AI", slug: "constems-ai", image: `${assetRoot}/cohort-logos/constems-ai-light.png`, width: 403, height: 402 },
+      { name: "LivNSense", slug: "livnsense", image: `${assetRoot}/LivNsesne.png`, width: 280, height: 280 },
+      { name: "Battwheelz", slug: "battwheelz", image: `${assetRoot}/Battwheelz.png`, width: 447, height: 447 },
+      { name: "Rezlytix", slug: "rezlytix", image: `${assetRoot}/Rezlytix.png`, width: 738, height: 168 },
+      { name: "Daten & Wissen", slug: "daten-wissen", image: `${assetRoot}/cohort-logos/daten-wissen-light.png`, width: 386, height: 213 },
     ],
     image: `${assetRoot}/cohort-strip.webp`, fallback: `${assetRoot}/cohort-strip.png`,
     alt: "Selected cohort: SATSURE, INDRAJAAL, CTRUH, AquaAirX, CONSTEMS-AI, and LivNSense",
@@ -382,9 +383,8 @@ export const landingContent: LandingContent = {
     titleStart: "Special thanks to our",
     titleAccent: "partners.",
     items: [
-      { name: "NTDP National Program", image: `${assetRoot}/partner-ntdp-program.webp`, fallback: `${assetRoot}/partner-ntdp-program.png`, alt: "National Technology Development Program — National Program", width: 752, height: 432 },
-      { name: "NTDP Accelerator Partner", image: `${assetRoot}/partner-ntdp-accelerator.webp`, fallback: `${assetRoot}/partner-ntdp-accelerator.png`, alt: "NTDP Empowering Accelerators — Accelerator Partner", width: 752, height: 432 },
-      { name: "Ministry of Investment", image: `${assetRoot}/partner-misa.webp`, fallback: `${assetRoot}/partner-misa.png`, alt: "Saudi Ministry of Investment — Government Partner", width: 752, height: 432 },
+      { name: "NTDP", image: `${assetRoot}/partner-ntdp-mark.png`, fallback: `${assetRoot}/partner-ntdp-mark.png`, alt: "National Technology Development Program", width: 334, height: 237 },
+      { name: "Ministry of Investment", image: `${assetRoot}/partner-misa-mark.png`, fallback: `${assetRoot}/partner-misa-mark.png`, alt: "Saudi Ministry of Investment", width: 244, height: 70 },
     ],
   },
   finalCta: {
@@ -409,7 +409,7 @@ export const landingContent: LandingContent = {
       { label: "Cohort", href: "#cohort" },
       { label: "Apply", href: "/apply" },
     ],
-    copyright: "© 2026 · Riyadh · New Delhi",
+    copyright: "© 2026",
   },
   apply: {
     label: "Cohort 01 · Waitlist",

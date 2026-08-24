@@ -39,15 +39,6 @@ export function HeroSection({ content, applyLabel, applyHref }: HeroSectionProps
       <LandingContainer>
         <div className="aa-hero__grid">
           <div className="aa-hero__copy">
-            <span className="aa-kicker">
-              {shouldReduceMotion ? (
-                content.eyebrow
-              ) : (
-                <TextAnimate as="span" animation="blurInUp" by="text" once duration={0.45}>
-                  {content.eyebrow}
-                </TextAnimate>
-              )}
-            </span>
             <h1 id="landing-title">
               {shouldReduceMotion ? (
                 <>
